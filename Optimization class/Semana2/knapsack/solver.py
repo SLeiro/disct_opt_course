@@ -33,8 +33,8 @@ def solve_it(input_data):
             taken_0[item.index] = 1
             value_0 += item.value
             weight_0 += item.weight
-    # Ordenamos por valor
-    items = sorted(items, key=lambda x: -x.value)
+    # Ordenamos por valor de menor a mayor
+    items = sorted(items, key=lambda x: x.value)
     value_1 = 0
     weight_1 = 0
     taken_1 = [0] * len(items)
@@ -43,13 +43,31 @@ def solve_it(input_data):
             taken_1[item.index] = 1
             value_1 += item.value
             weight_1 += item.weight
+    # Ordenamos por valor de mayor a menor
+    items = sorted(items, key=lambda x: -x.value)
+    value_2 = 0
+    weight_2 = 0
+    taken_2 = [0] * len(items)
+    for item in items:
+        if weight_2 + item.weight <= capacity:
+            taken_2[item.index] = 1
+            value_2 += item.value
+            weight_2 += item.weight
     # Comparar los valores y elegimos el mejor
-    if value_0 > value_1:
-        taken = taken_0
-        value = value_0
+    if value_0 >= value_1:
+        if value_0 >= value_2:
+            taken = taken_0
+            value = value_0
+        else:
+            taken = taken_2
+            value = value_2
     elif value_0 < value_1:
-        taken = taken_1
-        value = value_1
+        if value_1 >= value_2:
+            taken = taken_1
+            value = value_1
+        else:
+            taken = taken_1
+            value = value_1
     # prepare the solution in the specified output format
     output_data = str(value) + ' ' + str(0) + '\n'
     output_data += ' '.join(map(str, taken))
@@ -65,3 +83,4 @@ if __name__ == '__main__':
         print(solve_it(input_data))
     else:
         print('This test requires an input file.  Please select one from the data directory. (i.e. python solver.py ./data/ks_4_0)')
+
