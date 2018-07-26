@@ -2,20 +2,11 @@ import os
 import datetime
 import numpy as np
 import pandas as pd
-myDir = os.getcwd()
+myDir = 'C:\\Users\\blas.leiro\\Documents\\unilever_predictor\\app\\files\\output\\apo_ar_batch_2018-07-09.txt'
 
 
 
-df = pd.read_csv(os.path.join(myDir,'Input','pepe.csv'), index_col=0)
-df = df[df['pais'] == 'ARGENTINA']
-df = df[df['categoria'] == 'TOTAL ONE']
-lista = df.columns
-i = 0
-columns = []
-for column in lista:
-    columns.append(column)
-    i += 1
-print(columns)
-dataframe = pd.pivot_table(df, index=['alerta '], columns=['fecha'], values=['valor'], aggfunc=np.sum)
-# print(dataframe)
-# print(df)
+df = pd.read_csv(myDir, delimiter='\t', header=None)
+df =  df[2]
+df.drop_duplicates(inplace=True)
+df.to_csv('C:\\Users\\blas.leiro\\Documents\\insulto.csv', index=False)

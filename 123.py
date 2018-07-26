@@ -27,7 +27,7 @@ if __name__ == '__main__':
     for x in range(1000000):
         deck = maso()
         mazo= deck.mezclado()
-        v_decision = [1, 2,]
+        v_decision = [1, 2, 3]
         i = 0
         j = 0
         jugadas = 0
@@ -45,7 +45,7 @@ if __name__ == '__main__':
                 cant_jugadas_gandas += 1
     print(cant_jugadas_gandas, cant_jugadas_perdidas)
     df = pd.Series(cant_jugadas_acum)
-    df.to_csv(os.path.join(my_dir,'salida_cant_jugadas'))
+    df.to_csv(os.path.join(my_dir,'salida_cant_jugadas.txt'))
 
 
 
