@@ -22,18 +22,34 @@ def solve_it(input_data):
 
     # a trivial greedy algorithm for filling the knapsack
     # it takes items in-order until the knapsack is full
-    # Ordenar la lista de items por densidad de valor para despues meterla al greedy.
-    items = sorted(items, key=lambda x: x.value)
-    print(items)
-    value = 0
-    weight = 0
-    taken = [0]*len(items)
+    # Ordenar la lista de items por densidad de valor para despues meterla al primer greedy
+    # empezamos ordenando por densidad.
+    items = sorted(items, key=lambda x: -x.density)
+    value_0 = 0
+    weight_0 = 0
+    taken_0 = [0]*len(items)
     for item in items:
-        if weight + item.weight <= capacity:
-            taken[item.index] = 1
-            value += item.value
-            weight += item.weight
-    
+        if weight_0 + item.weight <= capacity:
+            taken_0[item.index] = 1
+            value_0 += item.value
+            weight_0 += item.weight
+    # Ordenamos por valor
+    items = sorted(items, key=lambda x: -x.value)
+    value_1 = 0
+    weight_1 = 0
+    taken_1 = [0] * len(items)
+    for item in items:
+        if weight_1 + item.weight <= capacity:
+            taken_1[item.index] = 1
+            value_1 += item.value
+            weight_1 += item.weight
+    # Comparar los valores y elegimos el mejor
+    if value_0 > value_1:
+        taken = taken_0
+        value = value_0
+    elif value_0 < value_1:
+        taken = taken_1
+        value = value_1
     # prepare the solution in the specified output format
     output_data = str(value) + ' ' + str(0) + '\n'
     output_data += ' '.join(map(str, taken))
