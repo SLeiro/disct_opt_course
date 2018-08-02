@@ -73,7 +73,6 @@ def solve_it_greedy(input_data):
     output_data += ' '.join(map(str, taken))
     return output_data
 
-
 def solve_it_DP(input_data):
     # parse the input
 

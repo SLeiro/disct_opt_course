@@ -74,7 +74,6 @@ def make_cc_transfers():
         # print(dateInfoDic)
     # Insert into data frame
     relaunches['cc_actual'] = actSkus
-    print(relaunches)
     relaunches = relaunches.drop('desde', 1)
     relaunches.to_csv(os.path.join(myDir, 'output', 'relaunches.csv'), index=False)
      # Build dates data frame
@@ -82,7 +81,7 @@ def make_cc_transfers():
     for i, r in dateInfoDic.iteritems():
         dateInfo.append([i, r[0], r[1]])
     dateInfoDF = pd.DataFrame(data=dateInfo, columns=['cc', 'desde', 'hasta'])
-    dateInfoDF.to_csv(os.path.join(myDir, 'output', 'desde_hasta.csv'), index=False)
+
     # Upload dates to DB
 
 if __name__ == '__main__':
