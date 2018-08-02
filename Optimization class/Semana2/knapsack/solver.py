@@ -90,14 +90,8 @@ def solve_it_DP(input_data):
         items.append(Item(i - 1, int(parts[0]), int(parts[1])))
     # a trivial greedy algorithm for filling the knapsack
     # it takes items in-order until the knapsack is full
+    """ToDo: aca va la matriz"""
 
-    def DP(k, j):
-        if k == j:
-            return 0
-        elif items[j].weight <= k:
-            return max(DP(k, j-1), items[j].value + DP(k-items[j].weight, j-1))
-        else:
-            return DP(k, j-1)
     # prepare the solution in the specified output format
     output_data = DP(capacity, item_count-1)
     # output_data = str(value) + ' ' + str(0) + '\n'
